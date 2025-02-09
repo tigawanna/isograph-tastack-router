@@ -41,7 +41,7 @@ export function ThemeToggle({}: ThemeToggleProps) {
 
   return (
     <div data-test="theme-toggle" className="flex items-center justify-between gap-5 ">
-      <div className="dropdown">
+      <div className="dropdown bg-base-300">
         <div tabIndex={0} role="button" className="btn m-1 p-1 px-2">
           Theme
           <svg

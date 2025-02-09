@@ -37,6 +37,6 @@ export const Route = createRootRouteWithContext<{
     ctx.context.viewer = viewer;
     return viewer;
   },
-  staleTime: 200_000,
+  staleTime: 2_000_000,
   validateSearch: (search) => searchparams.parse(search),
 });
