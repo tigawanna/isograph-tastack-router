@@ -19,6 +19,7 @@ import { IsographEnvironmentProvider } from "@isograph/react";
 import { Suspense } from "react";
 import { ThemeToggle } from "@/components/themes/ThemeToggle";
 import { DashboardSidebarUser } from "./DashboardSidebarUser";
+import { RouterPendingComponent } from "@/lib/tanstack/router/RouterPendingComponent";
 
 interface DashboardLayoutProps {
   sidebar_props?: React.ComponentProps<typeof Sidebar>;
@@ -53,9 +54,9 @@ export function DashboardLayout({ sidebar_props }: DashboardLayoutProps) {
           </div>
         </header>
         {/* main content */}
-        <div data-test="dashboard-layout" className="h-full min-h-screen">
+        <div data-test="dashboard-layout" className="h-full mt-12 p-2 min-h-screen bg-accent/10">
           <IsographEnvironmentProvider environment={environment}>
-            <Suspense fallback={<div>Loading Pokemon...</div>}>
+            <Suspense fallback={<RouterPendingComponent/>}>
               <Outlet />
             </Suspense>
           </IsographEnvironmentProvider>

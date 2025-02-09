@@ -9,7 +9,6 @@ export function RootComponent() {
 
   return (
     <div className="content min-h-screen w-full">
-      <MainNavbar/>
       <TailwindIndicator />
       <Outlet />
       <TanStackRouterDevtools position="bottom-left" />
