@@ -1,0 +1,6 @@
+@import "tailwindcss";
+@plugin "daisyui" {
+  /* themes: cupcacke --default, forest --prefersdark; */
+  themes: all;
+  logs: false;
+}

@@ -11,9 +11,7 @@ export function useViewer() {
     return new Promise<boolean>((resolve, reject) => {
     setTimeout(() => {
       try {
-        document.startViewTransition(() => {
-          resolve(true);
-        });
+        resolve(true);
       } catch (error) {
         resolve(false);
       }
@@ -80,7 +78,7 @@ export async function fetchCurrentViewer(token: string): Promise<GitHubViewer|un
     return;
   }
   const user = (await response.json()) as GitHubViewer | undefined;
-  // console.log("Github Viewer === ", user);
+  console.log("Github Viewer === ", user);
   return user;
 }
 

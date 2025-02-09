@@ -5,6 +5,7 @@ import "@/view-transition/slides-transition.css";
 import "@/view-transition/flip-transition.css";
 import "@/view-transition/vertical-transition.css";
 import "../components/pagination/pagination.css";
+import "./index.css";
 import { QueryClient } from "@tanstack/react-query";
 import { RootComponent } from "./-components/RootComponent";
 import { z } from "zod";
@@ -21,7 +22,7 @@ const searchparams = z.object({
 
 export const Route = createRootRouteWithContext<{
   queryClient: QueryClient;
-  viewer: ReturnType<typeof fetchCurrentViewer> | undefined;
+  viewer: Awaited<ReturnType<typeof fetchCurrentViewer> | undefined>;
   PAT?: string;
 }>()({
   component: RootComponent,
@@ -33,8 +34,9 @@ export const Route = createRootRouteWithContext<{
     if (!viewer) {
       ctx.context.PAT = undefined;
     }
+    ctx.context.viewer = viewer;
     return viewer;
   },
-  staleTime: 10_000,
+  staleTime: 200_000,
   validateSearch: (search) => searchparams.parse(search),
 });

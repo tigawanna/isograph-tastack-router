@@ -1,7 +1,6 @@
 import { StrictMode, Suspense } from "react";
 import ReactDOM from "react-dom/client";
 import { createRouter } from "@tanstack/react-router";
-import "./index.css";
 // Import the generated route tree
 import { routeTree } from "./routeTree.gen";
 import { RouterErrorComponent } from "./lib/tanstack/router/routerErrorComponent";
@@ -10,7 +9,6 @@ import { RouterPendingComponent } from "./lib/tanstack/router/RouterPendingCompo
 import { MutationCache, QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import React from "react";
 import { App } from "./App";
-import { envVariables } from "./env";
 import { getPAT } from "./lib/viewer/use-viewer";
 
 export const queryClient = new QueryClient({
