@@ -8,6 +8,7 @@ import "../components/pagination/pagination.css";
 import { QueryClient } from "@tanstack/react-query";
 import { RootComponent } from "./-components/RootComponent";
 import { z } from "zod";
+import { fetchCurrentViewer } from "@/lib/viewer/use-viewer";
 
 const searchparams = z.object({
   globalPage: z.number().optional(),
@@ -20,7 +21,20 @@ const searchparams = z.object({
 
 export const Route = createRootRouteWithContext<{
   queryClient: QueryClient;
+  viewer: ReturnType<typeof fetchCurrentViewer> | undefined;
+  PAT?: string;
 }>()({
   component: RootComponent,
+  async loader(ctx) {
+    if (!ctx.context.PAT) {
+      return;
+    }
+    const viewer = await fetchCurrentViewer(ctx.context.PAT);
+    if (!viewer) {
+      ctx.context.PAT = undefined;
+    }
+    return viewer;
+  },
+  staleTime: 10_000,
   validateSearch: (search) => searchparams.parse(search),
 });
