@@ -33,6 +33,7 @@ export const Route = createRootRouteWithContext<{
     const viewer = await fetchCurrentViewer(ctx.context.PAT);
     if (!viewer) {
       ctx.context.PAT = undefined;
+      ctx.context.viewer = undefined;
     }
     ctx.context.viewer = viewer;
     return viewer;
