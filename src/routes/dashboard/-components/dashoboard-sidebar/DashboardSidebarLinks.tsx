@@ -21,7 +21,7 @@ export function DashboardSidebarLinks({}: DashboardSidebarLinksProps) {
   const { state, setOpen, setOpenMobile, isMobile } = useSidebar();
   const { pathname } = useLocation();
   return (
-    <SidebarGroup className="h-full bg-base-100">
+    <SidebarGroup className="h-full bg-base-100 ">
       <SidebarGroupLabel>House keeping</SidebarGroupLabel>
       <SidebarMenu className="gap-5">
         {dashboard_routes.map((item) => {

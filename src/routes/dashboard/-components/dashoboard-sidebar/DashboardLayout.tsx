@@ -5,11 +5,7 @@ import {
   SidebarHeader,
   SidebarRail,
 } from "@/components/shadcn/ui/sidebar";
-import {
-  SidebarInset,
-  SidebarProvider,
-  SidebarTrigger,
-} from "@/components/shadcn/ui/sidebar";
+import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/shadcn/ui/sidebar";
 import { Separator } from "@/components/shadcn/ui/separator";
 import { Outlet } from "@tanstack/react-router";
 import { DashboardSidebarHeader } from "./DashboardSidebarHeader";
@@ -18,19 +14,23 @@ import { DashboardSidebarLinks } from "./DashboardSidebarLinks";
 import { TSRBreadCrumbs } from "@/lib/tanstack/router/TSRBreadCrumbs";
 import { DashboardTheme } from "./DashboardTheme";
 import { Helmet } from "@/components/wrappers/custom-helmet";
+import { useIsographEnviroment } from "@/lib/isograph/client";
+import { IsographEnvironmentProvider } from "@isograph/react";
+import { Suspense } from "react";
 
 interface DashboardLayoutProps {
-  sidebar_props: React.ComponentProps<typeof Sidebar>;
+  sidebar_props?: React.ComponentProps<typeof Sidebar>;
 }
 
 export function DashboardLayout({ sidebar_props }: DashboardLayoutProps) {
+  const environment = useIsographEnviroment();
   return (
     <SidebarProvider defaultOpen={false}>
-      <Helmet title="Property | Dashboard"  description="Dashboard for ypur property"/>
+      <Helmet title="Github| Dashboard" description="Dashboard for Github" />
       <Sidebar className="" collapsible="icon" {...sidebar_props}>
-        <SidebarHeader>
+        {/* <SidebarHeader>
           <DashboardSidebarHeader />
-        </SidebarHeader>
+        </SidebarHeader> */}
         <SidebarContent>
           <DashboardSidebarLinks />
         </SidebarContent>
@@ -43,7 +43,7 @@ export function DashboardLayout({ sidebar_props }: DashboardLayoutProps) {
         <SidebarRail />
       </Sidebar>
       <SidebarInset>
-        <header className="sticky top-0 z-30 flex h-16 items-center gap-2 bg-base-100 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12">
+        <header className="fixed z-30 flex h-10 items-center gap-2 bg-base-100 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12">
           <div className="flex items-center gap-2 px-4">
             <SidebarTrigger className="-ml-1" />
             <Separator orientation="vertical" className="mr-2 h-4" />
@@ -51,8 +51,12 @@ export function DashboardLayout({ sidebar_props }: DashboardLayoutProps) {
           </div>
         </header>
         {/* main content */}
-        <div data-test="dashboard-layout">
-          <Outlet />
+        <div data-test="dashboard-layout" className="bg-accent h-full min-h-screen">
+          {/* <IsographEnvironmentProvider environment={environment}>
+            <Suspense fallback={<div>Loading Pokemon...</div>}> */}
+              <Outlet />
+            {/* </Suspense>
+          </IsographEnvironmentProvider> */}
         </div>
       </SidebarInset>
     </SidebarProvider>
