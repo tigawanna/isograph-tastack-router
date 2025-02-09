@@ -7,7 +7,7 @@ import {
 } from "@/components/shadcn/ui/sidebar";
 import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/shadcn/ui/sidebar";
 import { Separator } from "@/components/shadcn/ui/separator";
-import { Outlet } from "@tanstack/react-router";
+import { Outlet, useRouteContext } from "@tanstack/react-router";
 import { DashboardSidebarHeader } from "./DashboardSidebarHeader";
 import { DashboardSidebarLinks } from "./DashboardSidebarLinks";
 // import { DashboardSidebarUser } from "./DashboardSidebarUser";
@@ -26,7 +26,8 @@ interface DashboardLayoutProps {
 }
 
 export function DashboardLayout({ sidebar_props }: DashboardLayoutProps) {
-  const environment = useIsographEnviroment();
+  const {PAT} = useRouteContext({from:"__root__"});
+  const environment = useIsographEnviroment(PAT!);
   return (
     <SidebarProvider defaultOpen={false}>
       <Helmet title="Github| Dashboard" description="Dashboard for Github" />

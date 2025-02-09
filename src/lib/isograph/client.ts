@@ -2,17 +2,18 @@ import { useMemo } from "react";
 import {
   createIsographEnvironment,
   createIsographStore,
-  IsographEnvironmentProvider,
 } from '@isograph/react';
 
 export function makeNetworkRequest<T>(
   queryText: string,
   variables: unknown,
+  token: string,
 ): Promise<T> {
-  const promise = fetch('https://graphqlpokemon.favware.tech/v8', {
+  const promise = fetch('https://api.github.com/graphql', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({ query: queryText, variables }),
   }).then(async (response) => {
@@ -41,12 +42,12 @@ export function makeNetworkRequest<T>(
   return promise;
 }
 
-export function useIsographEnviroment(){
+export function useIsographEnviroment(token: string) {
     return  useMemo(
     () =>
       createIsographEnvironment(
         createIsographStore(),
-        makeNetworkRequest,
+        (...args)=>makeNetworkRequest(...args,token),
         null,
         typeof window != 'undefined' ? console.log : null,
       ),
