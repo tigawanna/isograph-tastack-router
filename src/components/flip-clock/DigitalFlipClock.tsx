@@ -56,7 +56,7 @@ function FlipUnitContainer({ digit, shuffle, unit }:{digit:number;shuffle:boolea
   const animation2 = !shuffle ? "fold" : "unfold";
 
   return (
-    <div className={"flipUnitContainer md:w-[50%] flex-grow"}>
+    <div className={"flipUnitContainer md:w-[50%] grow"}>
       <StaticCard position={"upperCard"} digit={currentDigit} />
       <StaticCard position={"lowerCard"} digit={previousDigit} />
       <AnimatedCard digit={digit1} animation={animation1} />

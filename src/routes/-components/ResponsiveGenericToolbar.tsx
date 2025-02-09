@@ -1,4 +1,4 @@
-import { ThemeToggle } from "@/components/navigation/ThemeToggle";
+import { ThemeToggle } from "@/components/themes/ThemeToggle";
 import { Link } from "@tanstack/react-router";
 import { MapPinHouse } from "lucide-react";
 

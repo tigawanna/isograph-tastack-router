@@ -6,7 +6,7 @@ export function HomePage() {
   return (
     <div
       data-test="homepage"
-      className="justify-center flex h-full min-h-screen w-full flex-col items-center overflow-auto bg-gradient-to-br from-primary/60 via-red/60 to-primary/30"
+      className="justify-center flex h-full min-h-screen w-full flex-col items-center overflow-auto bg-linear-to-br from-primary/60 via-red/60 to-primary/30"
     >
       <Helmet
         title="My property manager"

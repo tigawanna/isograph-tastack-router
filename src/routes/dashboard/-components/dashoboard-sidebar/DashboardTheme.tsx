@@ -1,13 +1,13 @@
 import { useSidebar } from "@/components/shadcn/ui/sidebar";
+import { AllDaisyUiThemes } from "@/components/themes/AllDaisyUiThemes";
+import { ViewTransitionSelect } from "@/components/themes/ViewTransitionSelect";
 import { useTheme } from "@/lib/tanstack/router/use-theme";
-import {Sun,Moon} from "lucide-react"
-interface DashboardThemeProps {
+import { Sun, Moon } from "lucide-react";
+interface DashboardThemeProps {}
 
-}
-
-export function DashboardTheme({}:DashboardThemeProps){
+export function DashboardTheme({}: DashboardThemeProps) {
   const { theme, updateTheme } = useTheme();
-    const { state } = useSidebar();
+  const { state } = useSidebar();
   function transitionColors() {
     if (typeof window !== "undefined") {
       try {
@@ -24,27 +24,16 @@ export function DashboardTheme({}:DashboardThemeProps){
     }
   }
   return (
-    <div className="flex w-full items-center justify-between gap-2">
-        {(import.meta.env.DEV && state === "expanded") && (
-      <div className="hidden md:flex">
-          <select
-            className="select select-bordered select-sm max-w-xs"
-            onChange={(e) =>
-              (document.documentElement.dataset.style = e.target.value)
-            }
-          >
-            <option value="default">Default</option>
-            <option value="vertical">Vertical</option>
-            <option value="wipe">Wipe</option>
-            <option value="angled">Angled</option>
-            <option value="flip">Flip</option>
-            <option value="slides">Slides</option>
-          </select>
-      </div>
+    <div className="flex flex-wrap w-full items-center justify-between gap-4 px-2">
+      <div className="flex w-full items-center justify-between gap-4">
+        {import.meta.env.DEV && state === "expanded" && (
+          <ViewTransitionSelect compact={state !== "expanded"} />
         )}
-      <button onClick={() => transitionColors()} className="">
-        {theme === "light" ? <Moon className="size-"/> : <Sun className="size-"/>}
-      </button>
+        <button onClick={() => transitionColors()} className="">
+          {theme === "light" ? <Moon className="size-" /> : <Sun className="size-" />}
+        </button>
+      </div>
+      <AllDaisyUiThemes compact={state !== "expanded"} />
     </div>
   );
 }

@@ -34,11 +34,11 @@ export function makeHotToast({
         <div
           className={`${
             t.visible ? "animate-enter" : "animate-leave"
-          } ${toastVariantStyle(variant)} pointer-events-auto flex w-full max-w-md rounded-lg bg-gradient-to-r from-base-200  ring-1 ring-success ring-opacity-5 dark:shadow-sm`}
+          } ${toastVariantStyle(variant)} pointer-events-auto flex w-full max-w-md rounded-lg bg-linear-to-r from-base-200  ring-1 ring-success ring-opacity-5 dark:shadow-xs`}
         >
           <div className="w-0 flex-1 p-4">
             <div className="flex items-center justify-center">
-              <div className="h-full flex-shrink-0 items-center justify-center pt-0.5">
+              <div className="h-full shrink-0 items-center justify-center pt-0.5">
                 {variant === "success" && (
                   <CheckCircle2 className="aspect-square h-full text-success" />
                 )}

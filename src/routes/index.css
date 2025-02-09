@@ -2,13 +2,37 @@
 
 @plugin 'tailwindcss-animate';
 @plugin '../components/shadcn/lib/shadcn-tailwind-config.ts';
+@plugin 'tailwindcss-animate';
+
 @plugin "daisyui" {
   /* themes: cupcacke --default, forest --prefersdark; */
   themes: all;
   logs: false;
 }
 
+
 @custom-variant dark (&:is(.dark *));
+
+
+
+@theme {
+  --animate-border-spin: border-spin 7s linear infinite;
+
+  --color-sidebar: oklch(var(--sidebar-background));
+  --color-sidebar-foreground: oklch(var(--sidebar-foreground));
+  --color-sidebar-primary: oklch(var(--sidebar-primary));
+  --color-sidebar-primary-foreground: oklch(var(--sidebar-primary-foreground));
+  --color-sidebar-accent: oklch(var(--sidebar-accent));
+  --color-sidebar-accent-foreground: oklch(var(--sidebar-accent-foreground));
+  --color-sidebar-border: oklch(var(--sidebar-border));
+  --color-sidebar-ring: oklch(var(--sidebar-ring));
+
+  @keyframes border-spin {
+    100% {
+      transform: rotate(-360deg);
+    }
+  }
+}
 
 @theme {
   --animate-border-spin: border-spin 7s linear infinite;
@@ -28,6 +52,8 @@
     }
   }
 }
+
+
 
 /*
   The default border color has changed to `currentColor` in Tailwind CSS v4,

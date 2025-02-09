@@ -17,6 +17,8 @@ import { Helmet } from "@/components/wrappers/custom-helmet";
 import { useIsographEnviroment } from "@/lib/isograph/client";
 import { IsographEnvironmentProvider } from "@isograph/react";
 import { Suspense } from "react";
+import { ThemeToggle } from "@/components/themes/ThemeToggle";
+import { DashboardSidebarUser } from "./DashboardSidebarUser";
 
 interface DashboardLayoutProps {
   sidebar_props?: React.ComponentProps<typeof Sidebar>;
@@ -28,22 +30,22 @@ export function DashboardLayout({ sidebar_props }: DashboardLayoutProps) {
     <SidebarProvider defaultOpen={false}>
       <Helmet title="Github| Dashboard" description="Dashboard for Github" />
       <Sidebar className="" collapsible="icon" {...sidebar_props}>
-        {/* <SidebarHeader>
+        <SidebarHeader>
           <DashboardSidebarHeader />
-        </SidebarHeader> */}
+        </SidebarHeader>
         <SidebarContent>
           <DashboardSidebarLinks />
         </SidebarContent>
-        <SidebarFooter className="gap-3">
+        <SidebarFooter className="gap-5">
           {/* <ThemeToggle /> */}
           <DashboardTheme />
-          {/* <DashboardSidebarUser /> */}
+          <DashboardSidebarUser />
           <div className="h-10" />
         </SidebarFooter>
         <SidebarRail />
       </Sidebar>
       <SidebarInset>
-        <header className="fixed z-30 flex h-10 items-center gap-2 bg-base-100 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12">
+        <header className="fixed z-30 flex h-10 items-center gap-2 bg-base-100 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12">
           <div className="flex items-center gap-2 px-4">
             <SidebarTrigger className="-ml-1" />
             <Separator orientation="vertical" className="mr-2 h-4" />
@@ -51,12 +53,12 @@ export function DashboardLayout({ sidebar_props }: DashboardLayoutProps) {
           </div>
         </header>
         {/* main content */}
-        <div data-test="dashboard-layout" className="bg-accent h-full min-h-screen">
-          {/* <IsographEnvironmentProvider environment={environment}>
-            <Suspense fallback={<div>Loading Pokemon...</div>}> */}
+        <div data-test="dashboard-layout" className="h-full min-h-screen">
+          <IsographEnvironmentProvider environment={environment}>
+            <Suspense fallback={<div>Loading Pokemon...</div>}>
               <Outlet />
-            {/* </Suspense>
-          </IsographEnvironmentProvider> */}
+            </Suspense>
+          </IsographEnvironmentProvider>
         </div>
       </SidebarInset>
     </SidebarProvider>

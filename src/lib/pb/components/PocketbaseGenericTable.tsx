@@ -360,12 +360,12 @@ export function PocketbaseGenericTableModal<T extends Record<string, any>>({
                 return (
                   <div
                     key={column.accessor}
-                    className="flex w-full flex-grow flex-col gap-2 rounded-md md:w-[40%]"
+                    className="flex w-full grow flex-col gap-2 rounded-md md:w-[40%]"
                   >
                     {column.label}
                     <div
                       key={column.accessor}
-                      className="flex w-full flex-grow flex-col justify-between gap-4 rounded-md bg-base-200 p-1"
+                      className="flex w-full grow flex-col justify-between gap-4 rounded-md bg-base-200 p-1"
                     >
                       <PBPickRelationField
                         dialogTrigger={
@@ -411,7 +411,7 @@ export function PocketbaseGenericTableModal<T extends Record<string, any>>({
               return (
                 <div
                   key={column.accessor}
-                  className="flex w-full flex-grow flex-col md:w-[40%]"
+                  className="flex w-full grow flex-col md:w-[40%]"
                 >
                   <label className="label">
                     <span className="label-text">{column.label}</span>
