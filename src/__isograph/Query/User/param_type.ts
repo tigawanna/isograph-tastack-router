@@ -1,10 +1,11 @@
+import type { Query__User__parameters } from './parameters_type';
 
-export type Query__Viewer__param = {
+export type Query__User__param = {
   readonly data: {
     /**
-The currently authenticated user.
+Lookup a user by login.
     */
-    readonly viewer: {
+    readonly user: ({
       /**
 The Node ID of the User object
       */
@@ -61,7 +62,7 @@ The user's public profile location.
 The HTTP URL for this user
       */
       readonly url: string,
-    },
+    } | null),
   },
-  readonly parameters: Record<PropertyKey, never>,
+  readonly parameters: Query__User__parameters,
 };

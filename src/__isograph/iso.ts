@@ -1,10 +1,10 @@
 import type { IsographEntrypoint } from '@isograph/react';
 import { type Mutation__FollowUser__param } from './Mutation/FollowUser/param_type';
 import { type Mutation__UnfollowUser__param } from './Mutation/UnfollowUser/param_type';
-import { type Query__Viewer__param } from './Query/Viewer/param_type';
+import { type Query__User__param } from './Query/User/param_type';
 import entrypoint_Mutation__FollowUser from '../__isograph/Mutation/FollowUser/entrypoint';
 import entrypoint_Mutation__UnfollowUser from '../__isograph/Mutation/UnfollowUser/entrypoint';
-import entrypoint_Query__Viewer from '../__isograph/Query/Viewer/entrypoint';
+import entrypoint_Query__User from '../__isograph/Query/User/entrypoint';
 
 // This is the type given to regular client fields.
 // This means that the type of the exported iso literal is exactly
@@ -63,8 +63,8 @@ export function iso<T>(
 ): IdentityWithParam<Mutation__UnfollowUser__param>;
 
 export function iso<T>(
-  param: T & MatchesWhitespaceAndString<'field Query.Viewer', T>
-): IdentityWithParamComponent<Query__Viewer__param>;
+  param: T & MatchesWhitespaceAndString<'field Query.User', T>
+): IdentityWithParamComponent<Query__User__param>;
 
 export function iso<T>(
   param: T & MatchesWhitespaceAndString<'entrypoint Mutation.FollowUser', T>
@@ -75,8 +75,8 @@ export function iso<T>(
 ): typeof entrypoint_Mutation__UnfollowUser;
 
 export function iso<T>(
-  param: T & MatchesWhitespaceAndString<'entrypoint Query.Viewer', T>
-): typeof entrypoint_Query__Viewer;
+  param: T & MatchesWhitespaceAndString<'entrypoint Query.User', T>
+): typeof entrypoint_Query__User;
 
 export function iso(_isographLiteralText: string):
   | IdentityWithParam<any>

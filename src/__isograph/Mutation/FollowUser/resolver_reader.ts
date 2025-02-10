@@ -1,7 +1,7 @@
 import type { EagerReaderArtifact, ReaderAst } from '@isograph/react';
 import { Mutation__FollowUser__param } from './param_type';
 import { Mutation__FollowUser__output_type } from './output_type';
-import { followUser as resolver } from '../../../routes/dashboard/-components/viewer/Profile';
+import { followUser as resolver } from '../../../routes/$user/-components/user/Profile';
 
 const readerAst: ReaderAst<Mutation__FollowUser__param> = [
   {

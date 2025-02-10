@@ -9,16 +9,12 @@ import "./index.css";
 import { QueryClient } from "@tanstack/react-query";
 import { RootComponent } from "./-components/RootComponent";
 import { z } from "zod";
-import { fetchCurrentViewer } from "@/lib/viewer/use-viewer";
+import { fetchCurrentViewer, viewerQueryOptions } from "@/lib/viewer/use-viewer";
 
 const searchparams = z.object({
   globalPage: z.number().optional(),
   globalSearch: z.string().optional(),
 });
-
-// const list = createRouteMask({
-
-// })
 
 export const Route = createRootRouteWithContext<{
   queryClient: QueryClient;
@@ -26,18 +22,17 @@ export const Route = createRootRouteWithContext<{
   PAT?: string;
 }>()({
   component: RootComponent,
-  async loader(ctx) {
-    if (!ctx.context.PAT) {
-      return;
-    }
-    const viewer = await fetchCurrentViewer(ctx.context.PAT);
-    if (!viewer) {
-      ctx.context.PAT = undefined;
-      ctx.context.viewer = undefined;
-    }
-    ctx.context.viewer = viewer;
-    return viewer;
-  },
-  staleTime: 2_000_000,
   validateSearch: (search) => searchparams.parse(search),
+  beforeLoad: async (ctx) => {
+    const viewer = await ctx.context.queryClient.ensureQueryData(viewerQueryOptions(ctx.context.PAT!));
+      if (!viewer) {
+        ctx.context.PAT = undefined;
+        ctx.context.viewer = undefined;
+      }
+      // ctx.context.viewer = viewer;
+  return {
+    ... ctx.context,
+    viewer,
+  };
+  }
 });

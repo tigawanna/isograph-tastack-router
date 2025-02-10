@@ -7,15 +7,45 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/shadcn/ui/tooltip";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/shadcn/ui/avatar";
+import { useViewer } from "@/lib/viewer/use-viewer";
 
 interface MainDrawerLinksProps {}
 
 export function MainDrawerLinks({}: MainDrawerLinksProps) {
-  const { state ,isMobile } = useSidebar();
+  const { state, isMobile } = useSidebar();
   const { pathname } = useLocation();
+  const { viewer } = useViewer();
   return (
     <div className="h-full flex flex-col items-center ">
       <div className="flex h-full p-1 w-full flex-col items-center gap-5 px-3">
+        {viewer && (
+          <TooltipProvider>
+            <Tooltip defaultOpen={false} delayDuration={10} disableHoverableContent>
+              <TooltipTrigger
+                asChild
+                className={
+                  pathname === viewer?.login
+                    ? `flex w-full gap-3 rounded-lg bg-base-200 text-primary`
+                    : `flex w-full gap-3 rounded-sm hover:bg-base-300`
+                }>
+                <Link
+                  to="/$user"
+                  params={{ user: viewer?.login }}
+                  className=" w-full  hover:text-primary  gap-3 flex items-center justify-between  bg-base-300">
+                  <Avatar>
+                    <AvatarImage src={viewer?.avatar_url} alt={viewer?.login?.slice(0, 2)} />
+                    <AvatarFallback>{viewer?.login?.slice(0, 2)}</AvatarFallback>
+                  </Avatar>
+                  {(state === "expanded" || isMobile) && (
+                    <div className="flex w-full p-2">{viewer?.login}</div>
+                  )}
+                </Link>
+              </TooltipTrigger>
+              <TooltipContent side="right">{viewer?.login}</TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+        )}
         {routes.map((route) => (
           <TooltipProvider key={route.name}>
             <Tooltip defaultOpen={false} delayDuration={10} disableHoverableContent>
@@ -31,7 +61,9 @@ export function MainDrawerLinks({}: MainDrawerLinksProps) {
                   to={route.href}
                   className=" w-full  hover:text-primary  gap-3 flex items-center justify-between  bg-base-300">
                   {route.icon}
-                  {(state === "expanded" || isMobile) && <div className="flex w-full p-2">{route.name}</div>}
+                  {(state === "expanded" || isMobile) && (
+                    <div className="flex w-full p-2">{route.name}</div>
+                  )}
                 </Link>
               </TooltipTrigger>
               <TooltipContent side="right">{route.name}</TooltipContent>

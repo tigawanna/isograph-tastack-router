@@ -3,9 +3,9 @@ import { ProfileDetails } from "./Profile";
 import { useImperativeReference } from "@isograph/react";
 interface ViewerProps {}
 
-export const ViewerIsograph = iso(`
-  field Query.Viewer @component {
-    viewer {
+export const UserIsograph = iso(`
+  field Query.User($login: String!) @component {
+    user(login: $login) {
     id
     name
     login
@@ -22,7 +22,7 @@ export const ViewerIsograph = iso(`
     url
     },
   }
-`)(function ViewerIsographComponent(props) {
+`)(function UserIsographComponent(props) {
   const { fragmentReference: followMutationRef, loadFragmentReference: followMutation } =
     useImperativeReference(iso(`entrypoint Mutation.FollowUser`));
 

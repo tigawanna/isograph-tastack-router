@@ -49,7 +49,7 @@ export function useIsographEnviroment(token: string) {
         createIsographStore(),
         (...args)=>makeNetworkRequest(...args,token),
         null,
-        typeof window != 'undefined' ? console.log : null,
+        // typeof window != 'undefined' ? console.log : null,
       ),
     [],
   );

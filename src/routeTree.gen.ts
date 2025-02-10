@@ -13,15 +13,10 @@
 import { Route as rootRoute } from './routes/__root'
 import { Route as ProfileImport } from './routes/profile'
 import { Route as AboutImport } from './routes/about'
-import { Route as DashboardLayoutImport } from './routes/dashboard/layout'
 import { Route as UserLayoutImport } from './routes/$user/layout'
 import { Route as IndexImport } from './routes/index'
-import { Route as DashboardIndexImport } from './routes/dashboard/index'
 import { Route as AuthIndexImport } from './routes/auth/index'
 import { Route as UserIndexImport } from './routes/$user/index'
-import { Route as DashboardRepositoriesIndexImport } from './routes/dashboard/repositories/index'
-import { Route as DashboardGistsIndexImport } from './routes/dashboard/gists/index'
-import { Route as DashboardUserIndexImport } from './routes/dashboard/$user/index'
 import { Route as UserRepositoriesIndexImport } from './routes/$user/repositories/index'
 import { Route as UserGistsIndexImport } from './routes/$user/gists/index'
 
@@ -39,12 +34,6 @@ const AboutRoute = AboutImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
-const DashboardLayoutRoute = DashboardLayoutImport.update({
-  id: '/dashboard',
-  path: '/dashboard',
-  getParentRoute: () => rootRoute,
-} as any)
-
 const UserLayoutRoute = UserLayoutImport.update({
   id: '/$user',
   path: '/$user',
@@ -57,12 +46,6 @@ const IndexRoute = IndexImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
-const DashboardIndexRoute = DashboardIndexImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => DashboardLayoutRoute,
-} as any)
-
 const AuthIndexRoute = AuthIndexImport.update({
   id: '/auth/',
   path: '/auth/',
@@ -73,26 +56,6 @@ const UserIndexRoute = UserIndexImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => UserLayoutRoute,
-} as any)
-
-const DashboardRepositoriesIndexRoute = DashboardRepositoriesIndexImport.update(
-  {
-    id: '/repositories/',
-    path: '/repositories/',
-    getParentRoute: () => DashboardLayoutRoute,
-  } as any,
-)
-
-const DashboardGistsIndexRoute = DashboardGistsIndexImport.update({
-  id: '/gists/',
-  path: '/gists/',
-  getParentRoute: () => DashboardLayoutRoute,
-} as any)
-
-const DashboardUserIndexRoute = DashboardUserIndexImport.update({
-  id: '/$user/',
-  path: '/$user/',
-  getParentRoute: () => DashboardLayoutRoute,
 } as any)
 
 const UserRepositoriesIndexRoute = UserRepositoriesIndexImport.update({
@@ -125,13 +88,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof UserLayoutImport
       parentRoute: typeof rootRoute
     }
-    '/dashboard': {
-      id: '/dashboard'
-      path: '/dashboard'
-      fullPath: '/dashboard'
-      preLoaderRoute: typeof DashboardLayoutImport
-      parentRoute: typeof rootRoute
-    }
     '/about': {
       id: '/about'
       path: '/about'
@@ -160,13 +116,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthIndexImport
       parentRoute: typeof rootRoute
     }
-    '/dashboard/': {
-      id: '/dashboard/'
-      path: '/'
-      fullPath: '/dashboard/'
-      preLoaderRoute: typeof DashboardIndexImport
-      parentRoute: typeof DashboardLayoutImport
-    }
     '/$user/gists/': {
       id: '/$user/gists/'
       path: '/gists'
@@ -180,27 +129,6 @@ declare module '@tanstack/react-router' {
       fullPath: '/$user/repositories'
       preLoaderRoute: typeof UserRepositoriesIndexImport
       parentRoute: typeof UserLayoutImport
-    }
-    '/dashboard/$user/': {
-      id: '/dashboard/$user/'
-      path: '/$user'
-      fullPath: '/dashboard/$user'
-      preLoaderRoute: typeof DashboardUserIndexImport
-      parentRoute: typeof DashboardLayoutImport
-    }
-    '/dashboard/gists/': {
-      id: '/dashboard/gists/'
-      path: '/gists'
-      fullPath: '/dashboard/gists'
-      preLoaderRoute: typeof DashboardGistsIndexImport
-      parentRoute: typeof DashboardLayoutImport
-    }
-    '/dashboard/repositories/': {
-      id: '/dashboard/repositories/'
-      path: '/repositories'
-      fullPath: '/dashboard/repositories'
-      preLoaderRoute: typeof DashboardRepositoriesIndexImport
-      parentRoute: typeof DashboardLayoutImport
     }
   }
 }
@@ -223,38 +151,15 @@ const UserLayoutRouteWithChildren = UserLayoutRoute._addFileChildren(
   UserLayoutRouteChildren,
 )
 
-interface DashboardLayoutRouteChildren {
-  DashboardIndexRoute: typeof DashboardIndexRoute
-  DashboardUserIndexRoute: typeof DashboardUserIndexRoute
-  DashboardGistsIndexRoute: typeof DashboardGistsIndexRoute
-  DashboardRepositoriesIndexRoute: typeof DashboardRepositoriesIndexRoute
-}
-
-const DashboardLayoutRouteChildren: DashboardLayoutRouteChildren = {
-  DashboardIndexRoute: DashboardIndexRoute,
-  DashboardUserIndexRoute: DashboardUserIndexRoute,
-  DashboardGistsIndexRoute: DashboardGistsIndexRoute,
-  DashboardRepositoriesIndexRoute: DashboardRepositoriesIndexRoute,
-}
-
-const DashboardLayoutRouteWithChildren = DashboardLayoutRoute._addFileChildren(
-  DashboardLayoutRouteChildren,
-)
-
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/$user': typeof UserLayoutRouteWithChildren
-  '/dashboard': typeof DashboardLayoutRouteWithChildren
   '/about': typeof AboutRoute
   '/profile': typeof ProfileRoute
   '/$user/': typeof UserIndexRoute
   '/auth': typeof AuthIndexRoute
-  '/dashboard/': typeof DashboardIndexRoute
   '/$user/gists': typeof UserGistsIndexRoute
   '/$user/repositories': typeof UserRepositoriesIndexRoute
-  '/dashboard/$user': typeof DashboardUserIndexRoute
-  '/dashboard/gists': typeof DashboardGistsIndexRoute
-  '/dashboard/repositories': typeof DashboardRepositoriesIndexRoute
 }
 
 export interface FileRoutesByTo {
@@ -263,29 +168,20 @@ export interface FileRoutesByTo {
   '/profile': typeof ProfileRoute
   '/$user': typeof UserIndexRoute
   '/auth': typeof AuthIndexRoute
-  '/dashboard': typeof DashboardIndexRoute
   '/$user/gists': typeof UserGistsIndexRoute
   '/$user/repositories': typeof UserRepositoriesIndexRoute
-  '/dashboard/$user': typeof DashboardUserIndexRoute
-  '/dashboard/gists': typeof DashboardGistsIndexRoute
-  '/dashboard/repositories': typeof DashboardRepositoriesIndexRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
   '/$user': typeof UserLayoutRouteWithChildren
-  '/dashboard': typeof DashboardLayoutRouteWithChildren
   '/about': typeof AboutRoute
   '/profile': typeof ProfileRoute
   '/$user/': typeof UserIndexRoute
   '/auth/': typeof AuthIndexRoute
-  '/dashboard/': typeof DashboardIndexRoute
   '/$user/gists/': typeof UserGistsIndexRoute
   '/$user/repositories/': typeof UserRepositoriesIndexRoute
-  '/dashboard/$user/': typeof DashboardUserIndexRoute
-  '/dashboard/gists/': typeof DashboardGistsIndexRoute
-  '/dashboard/repositories/': typeof DashboardRepositoriesIndexRoute
 }
 
 export interface FileRouteTypes {
@@ -293,17 +189,12 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/$user'
-    | '/dashboard'
     | '/about'
     | '/profile'
     | '/$user/'
     | '/auth'
-    | '/dashboard/'
     | '/$user/gists'
     | '/$user/repositories'
-    | '/dashboard/$user'
-    | '/dashboard/gists'
-    | '/dashboard/repositories'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -311,34 +202,24 @@ export interface FileRouteTypes {
     | '/profile'
     | '/$user'
     | '/auth'
-    | '/dashboard'
     | '/$user/gists'
     | '/$user/repositories'
-    | '/dashboard/$user'
-    | '/dashboard/gists'
-    | '/dashboard/repositories'
   id:
     | '__root__'
     | '/'
     | '/$user'
-    | '/dashboard'
     | '/about'
     | '/profile'
     | '/$user/'
     | '/auth/'
-    | '/dashboard/'
     | '/$user/gists/'
     | '/$user/repositories/'
-    | '/dashboard/$user/'
-    | '/dashboard/gists/'
-    | '/dashboard/repositories/'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   UserLayoutRoute: typeof UserLayoutRouteWithChildren
-  DashboardLayoutRoute: typeof DashboardLayoutRouteWithChildren
   AboutRoute: typeof AboutRoute
   ProfileRoute: typeof ProfileRoute
   AuthIndexRoute: typeof AuthIndexRoute
@@ -347,7 +228,6 @@ export interface RootRouteChildren {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   UserLayoutRoute: UserLayoutRouteWithChildren,
-  DashboardLayoutRoute: DashboardLayoutRouteWithChildren,
   AboutRoute: AboutRoute,
   ProfileRoute: ProfileRoute,
   AuthIndexRoute: AuthIndexRoute,
@@ -365,7 +245,6 @@ export const routeTree = rootRoute
       "children": [
         "/",
         "/$user",
-        "/dashboard",
         "/about",
         "/profile",
         "/auth/"
@@ -382,15 +261,6 @@ export const routeTree = rootRoute
         "/$user/repositories/"
       ]
     },
-    "/dashboard": {
-      "filePath": "dashboard/layout.tsx",
-      "children": [
-        "/dashboard/",
-        "/dashboard/$user/",
-        "/dashboard/gists/",
-        "/dashboard/repositories/"
-      ]
-    },
     "/about": {
       "filePath": "about.tsx"
     },
@@ -404,10 +274,6 @@ export const routeTree = rootRoute
     "/auth/": {
       "filePath": "auth/index.tsx"
     },
-    "/dashboard/": {
-      "filePath": "dashboard/index.tsx",
-      "parent": "/dashboard"
-    },
     "/$user/gists/": {
       "filePath": "$user/gists/index.tsx",
       "parent": "/$user"
@@ -415,18 +281,6 @@ export const routeTree = rootRoute
     "/$user/repositories/": {
       "filePath": "$user/repositories/index.tsx",
       "parent": "/$user"
-    },
-    "/dashboard/$user/": {
-      "filePath": "dashboard/$user/index.tsx",
-      "parent": "/dashboard"
-    },
-    "/dashboard/gists/": {
-      "filePath": "dashboard/gists/index.tsx",
-      "parent": "/dashboard"
-    },
-    "/dashboard/repositories/": {
-      "filePath": "dashboard/repositories/index.tsx",
-      "parent": "/dashboard"
     }
   }
 }

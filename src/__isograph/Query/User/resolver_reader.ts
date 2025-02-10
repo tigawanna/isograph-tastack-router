@@ -1,13 +1,18 @@
 import type {ComponentReaderArtifact, ExtractSecondParam, ReaderAst } from '@isograph/react';
-import { Query__Viewer__param } from './param_type';
-import { ViewerIsograph as resolver } from '../../../routes/dashboard/-components/viewer/ViewerIsographComponent';
+import { Query__User__param } from './param_type';
+import { UserIsograph as resolver } from '../../../routes/$user/-components/user/UserIsographComponent';
 
-const readerAst: ReaderAst<Query__Viewer__param> = [
+const readerAst: ReaderAst<Query__User__param> = [
   {
     kind: "Linked",
-    fieldName: "viewer",
+    fieldName: "user",
     alias: null,
-    arguments: null,
+    arguments: [
+      [
+        "login",
+        { kind: "Variable", name: "login" },
+      ],
+    ],
     condition: null,
     selections: [
       {
@@ -99,11 +104,11 @@ const readerAst: ReaderAst<Query__Viewer__param> = [
 ];
 
 const artifact: ComponentReaderArtifact<
-  Query__Viewer__param,
+  Query__User__param,
   ExtractSecondParam<typeof resolver>
 > = {
   kind: "ComponentReaderArtifact",
-  componentName: "Query.Viewer",
+  componentName: "Query.User",
   resolver,
   readerAst,
   hasUpdatable: false,

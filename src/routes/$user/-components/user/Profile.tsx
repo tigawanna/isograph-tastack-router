@@ -1,4 +1,3 @@
-import { Query__Viewer__param } from "@/__isograph/Query/Viewer/param_type";
 import { Button } from "@/components/shadcn/ui/button";
 import { Helmet } from "@/components/wrappers/custom-helmet";
 import { IoLocationOutline } from "react-icons/io5";
@@ -8,7 +7,7 @@ import { MdCorporateFare } from "react-icons/md";
 import { useState } from "react";
 import { getRelativeTimeString } from "@/utils/date";
 import { iso } from "@iso";
-import { FollowUnfollowButton } from "./FollowUnfollowButton";
+import { Query__User__param } from "@/__isograph/Query/User/param_type";
 
 // Define the mutation fields
 export const followUser = iso(`
@@ -29,14 +28,14 @@ export const unfollowUser = iso(`
 
 // In your component where you want to use the mutations
 
-interface ProfileDetails{
-  user: Query__Viewer__param;
+interface ProfileDetails {
+  user: Query__User__param;
   followThem: (their_id: string) => void;
   unfollowThem: (their_id: string) => void;
 }
 
-export function ProfileDetails({ user:{data} }: ProfileDetails) {
-  const user_data = data?.viewer;
+export function ProfileDetails({ user: { data } }: ProfileDetails) {
+  const user_data = data?.user;
   const extradetails = {
     company: user_data?.company,
     email: user_data?.email,
@@ -77,9 +76,11 @@ export function ProfileDetails({ user:{data} }: ProfileDetails) {
               <div className=" text-[15px] md:text-xl font-bold  ">{user_data?.name}</div>
               <div className="text-[15px] md:text-lg ">@{user_data?.login}</div>
               <div className="text-[15px] max-w-[80%] bg-base-100  p-1">{user_data?.bio}</div>
-              <div className="text-[15px]">
-                Joined {" :"} {getRelativeTimeString(new Date(user_data?.createdAt))}
-              </div>
+              {user_data?.createdAt && (
+                <div className="text-[15px]">
+                  Joined {" :"} {getRelativeTimeString(new Date(user_data?.createdAt))}
+                </div>
+              )}
             </div>
 
             <div className="w-full flex flex-wrap md:justify-center items-center gap-3 md:gap-2">

@@ -1,11 +1,11 @@
 import type {IsographEntrypoint, NormalizationAst, RefetchQueryNormalizationArtifactWrapper} from '@isograph/react';
-import {Query__Viewer__param} from './param_type';
-import {Query__Viewer__output_type} from './output_type';
+import {Query__User__param} from './param_type';
+import {Query__User__output_type} from './output_type';
 import readerResolver from './resolver_reader';
 const nestedRefetchQueries: RefetchQueryNormalizationArtifactWrapper[] = [];
 
-const queryText = 'query Viewer  {\
-  viewer {\
+const queryText = 'query User ($login: String!) {\
+  user____login___v_login: user(login: $login) {\
     id,\
     avatarUrl,\
     bio,\
@@ -28,8 +28,13 @@ const normalizationAst: NormalizationAst = {
   selections: [
     {
       kind: "Linked",
-      fieldName: "viewer",
-      arguments: null,
+      fieldName: "user",
+      arguments: [
+        [
+          "login",
+          { kind: "Variable", name: "login" },
+        ],
+      ],
       concreteType: "User",
       selections: [
         {
@@ -107,8 +112,8 @@ const normalizationAst: NormalizationAst = {
   ],
 };
 const artifact: IsographEntrypoint<
-  Query__Viewer__param,
-  Query__Viewer__output_type,
+  Query__User__param,
+  Query__User__output_type,
   NormalizationAst
 > = {
   kind: "Entrypoint",
