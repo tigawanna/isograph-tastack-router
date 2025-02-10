@@ -1,0 +1,8 @@
+{
+  "project_root": "./src/components",
+  "schema": "./schema.graphql",
+  "options": {
+    "module": "esmodule",
+    "on_invalid_id_type": "ignore"
+  }
+}

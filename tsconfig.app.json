@@ -23,7 +23,8 @@
     "noUncheckedSideEffectImports": true,
     "paths": {
       "@/*": ["./src/*"],
-      "~/*": ["./src/*"]
+      "~/*": ["./src/*"],
+      "@iso": ["./src/components/__isograph/iso.ts"]
     }
   },
   "include": ["src"]

@@ -4,6 +4,7 @@ import { TanStackRouterVite } from "@tanstack/router-plugin/vite";
 import tsconfigPaths from "vite-tsconfig-paths";
 import tailwindcss from "@tailwindcss/vite";
 import analyze from "rollup-plugin-analyzer";
+import path from 'path';
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -25,5 +26,13 @@ export default defineConfig({
   server: {
     port: 3000,
     host: true,
+  },
+    resolve: {
+    alias: {
+      '@iso': path.resolve(__dirname, './src/components/__isograph/iso.ts'),
+    },
+  },
+  optimizeDeps: {
+    include: ['@isograph/react'],
   },
 });
