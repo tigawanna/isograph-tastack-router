@@ -1,12 +1,12 @@
 import { iso } from "@iso";
 import { useLazyReference, useResult } from "@isograph/react";
 
-interface ViewerRouteProps {}
+interface ViewerComponentProps {}
 
-export function ViewerRoute({}: ViewerRouteProps) {
+export function ViewerComponent({}: ViewerComponentProps) {
   const { fragmentReference } = useLazyReference(iso(`entrypoint Query.Viewer`), {
     /* query variables */
   });
-  const HomePage = useResult(fragmentReference);
-  return <HomePage />;
+  const ViewerContainer = useResult(fragmentReference);
+  return <ViewerContainer />;
 }

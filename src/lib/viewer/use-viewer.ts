@@ -78,7 +78,7 @@ export async function fetchCurrentViewer(token: string): Promise<GitHubViewer|un
     return;
   }
   const user = (await response.json()) as GitHubViewer | undefined;
-  console.log("Github Viewer === ", user);
+  // console.log("Github Viewer === ", user);
   return user;
 }
 

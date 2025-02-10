@@ -15,11 +15,11 @@ import { TSRBreadCrumbs } from "@/lib/tanstack/router/TSRBreadCrumbs";
 import { DashboardTheme } from "./DashboardTheme";
 import { Helmet } from "@/components/wrappers/custom-helmet";
 import { useIsographEnviroment } from "@/lib/isograph/client";
-import { IsographEnvironmentProvider } from "@isograph/react";
-import { Suspense } from "react";
-import { ThemeToggle } from "@/components/themes/ThemeToggle";
 import { DashboardSidebarUser } from "./DashboardSidebarUser";
 import { RouterPendingComponent } from "@/lib/tanstack/router/RouterPendingComponent";
+import { IsographEnvironmentProvider } from "@isograph/react";
+import { Suspense } from "react";
+
 
 interface DashboardLayoutProps {
   sidebar_props?: React.ComponentProps<typeof Sidebar>;
