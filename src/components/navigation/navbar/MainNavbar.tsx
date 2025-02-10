@@ -1,7 +1,7 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { Home } from "lucide-react";
-import Nprogress from "./nprogress/Nprogress";
-import { ThemeToggle } from "../themes/ThemeToggle";
+import Nprogress from "../nprogress/Nprogress";
+import { ThemeToggle } from "../../themes/ThemeToggle";
 import { MainNavbarUser } from "./MainNavbarUser";
 
 interface MainNavbarProps {}

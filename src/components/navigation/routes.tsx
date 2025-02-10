@@ -1,4 +1,4 @@
-import { Droplet, Home, NotepadText, ShieldCheck, Store, User, Users, Wallet, Zap } from "lucide-react";
+import { Droplet, Home, LayoutDashboard, NotepadText, SearchSlash, ShieldCheck, Store, User, Users, Wallet, Zap } from "lucide-react";
 
 export const dashboard_routes = [
   { name: "repositories", href: "/dashboard/repositories", icon: <Store /> },
@@ -17,13 +17,13 @@ export const routes = [
   {
     name: "About",
     href: "/about",
-    icon: <Home />,
+    icon: <SearchSlash />,
     children: undefined,
   },
   {
     name: "Dashboard",
     href: "/dashboard",
-    icon: <Store />,
+    icon: <LayoutDashboard />,
     children: dashboard_routes,
   },
   {

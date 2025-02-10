@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { routes } from "./routes";
+import { routes } from "../routes";
 import { Home } from "lucide-react";
 
 interface NavbarRoutesProps {}

@@ -1,4 +1,4 @@
-import { MainNavbar } from "@/components/navigation/MainNavbar";
+import { MainNavbar } from "@/components/navigation/navbar/MainNavbar";
 import { TailwindIndicator } from "@/components/navigation/tailwind-indicator";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Outlet } from "@tanstack/react-router";
