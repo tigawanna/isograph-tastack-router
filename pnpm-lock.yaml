@@ -156,6 +156,9 @@ importers:
         specifier: ^3.24.1
         version: 3.24.1
     devDependencies:
+      '@0no-co/graphqlsp':
+        specifier: ^1.12.16
+        version: 1.12.16(graphql@16.10.0)(typescript@5.7.3)
       '@babel/preset-typescript':
         specifier: ^7.26.0
         version: 7.26.0(@babel/core@7.26.7)
@@ -210,6 +213,9 @@ importers:
       eslint-plugin-react-refresh:
         specifier: ^0.4.18
         version: 0.4.18(eslint@9.19.0(jiti@2.4.2))
+      graphql:
+        specifier: ^16.10.0
+        version: 16.10.0
       postcss:
         specifier: ^8.5.1
         version: 8.5.1
@@ -233,6 +239,20 @@ importers:
         version: 5.1.4(typescript@5.7.3)(vite@6.1.0(@types/node@22.13.1)(jiti@2.4.2)(lightningcss@1.29.1)(tsx@4.19.2)(yaml@2.7.0))
 
 packages:
+
+  '@0no-co/graphql.web@1.0.13':
+    resolution: {integrity: sha512-jqYxOevheVTU1S36ZdzAkJIdvRp2m3OYIG5SEoKDw5NI8eVwkoI0D/Q3DYNGmXCxkA6CQuoa7zvMiDPTLqUNuw==}
+    peerDependencies:
+      graphql: ^14.0.0 || ^15.0.0 || ^16.0.0
+    peerDependenciesMeta:
+      graphql:
+        optional: true
+
+  '@0no-co/graphqlsp@1.12.16':
+    resolution: {integrity: sha512-B5pyYVH93Etv7xjT6IfB7QtMBdaaC07yjbhN6v8H7KgFStMkPvi+oWYBTibMFRMY89qwc9H8YixXg8SXDVgYWw==}
+    peerDependencies:
+      graphql: ^15.5.0 || ^16.0.0 || ^17.0.0
+      typescript: ^5.0.0
 
   '@alloc/quick-lru@5.2.0':
     resolution: {integrity: sha512-UrcABB+4bUrFABwbluTIBErXwvbsU/V7TZWfmbgJfbkwiBuziS9gxdODUyuiecfdGQ85jglMW6juS3+z5TsKLw==}
@@ -725,6 +745,12 @@ packages:
 
   '@floating-ui/utils@0.2.9':
     resolution: {integrity: sha512-MDWhGtE+eHw5JW7lq4qhc5yRLS11ERl1c7Z6Xd0a58DozHES6EnNNwUWbMiG4J9Cgj053Bhk8zvlhFYKVhULwg==}
+
+  '@gql.tada/internal@1.0.8':
+    resolution: {integrity: sha512-XYdxJhtHC5WtZfdDqtKjcQ4d7R1s0d1rnlSs3OcBEUbYiPoJJfZU7tWsVXuv047Z6msvmr4ompJ7eLSK5Km57g==}
+    peerDependencies:
+      graphql: ^15.5.0 || ^16.0.0 || ^17.0.0
+      typescript: ^5.0.0
 
   '@hookform/resolvers@3.10.0':
     resolution: {integrity: sha512-79Dv+3mDF7i+2ajj7SkypSKHhl1cbln1OGavqrsF7p6mbUv11xpqpacPsGDCTRvCSjEEIez2ef1NveSVL3b0Ag==}
@@ -2122,6 +2148,10 @@ packages:
     resolution: {integrity: sha512-GTCJtzJmkFLWRfFJuoo9RWWa/FfamUHgiFosxi/X1Ani4AVWbeyBenZTNX6dM+7WSbbFfTo/25eh0LLkwHMw2w==}
     engines: {node: '>= 10.x'}
 
+  graphql@16.10.0:
+    resolution: {integrity: sha512-AjqGKbDGUFRKIRCP9tCKiIGHyriz2oHEbPIbEtcSLSs4YjReZOIPQQWek4+6hjw62H9QShXHyaGivGiYVLeYFQ==}
+    engines: {node: ^12.22.0 || ^14.16.0 || ^16.0.0 || >=17.0.0}
+
   has-flag@4.0.0:
     resolution: {integrity: sha512-EykJT/Q1KjTWctppgIAgfSO0tKVuZUjhgMr17kqTumMl6Afv3EISleU7qZUzoXDFTAHTDC4NOoG/ZxU3EvlMPQ==}
     engines: {node: '>=8'}
@@ -2803,6 +2833,16 @@ packages:
 
 snapshots:
 
+  '@0no-co/graphql.web@1.0.13(graphql@16.10.0)':
+    optionalDependencies:
+      graphql: 16.10.0
+
+  '@0no-co/graphqlsp@1.12.16(graphql@16.10.0)(typescript@5.7.3)':
+    dependencies:
+      '@gql.tada/internal': 1.0.8(graphql@16.10.0)(typescript@5.7.3)
+      graphql: 16.10.0
+      typescript: 5.7.3
+
   '@alloc/quick-lru@5.2.0': {}
 
   '@ampproject/remapping@2.3.0':
@@ -3213,6 +3253,12 @@ snapshots:
       react-dom: 19.0.0(react@19.0.0)
 
   '@floating-ui/utils@0.2.9': {}
+
+  '@gql.tada/internal@1.0.8(graphql@16.10.0)(typescript@5.7.3)':
+    dependencies:
+      '@0no-co/graphql.web': 1.0.13(graphql@16.10.0)
+      graphql: 16.10.0
+      typescript: 5.7.3
 
   '@hookform/resolvers@3.10.0(react-hook-form@7.54.2(react@19.0.0))':
     dependencies:
@@ -4722,6 +4768,8 @@ snapshots:
   graphemer@1.4.0: {}
 
   graphql@15.3.0: {}
+
+  graphql@16.10.0: {}
 
   has-flag@4.0.0: {}
 

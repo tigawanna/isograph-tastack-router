@@ -7,8 +7,35 @@ import { TbPoint, TbBrandTwitter } from "react-icons/tb";
 import { MdCorporateFare } from "react-icons/md";
 import { useState } from "react";
 import { getRelativeTimeString } from "@/utils/date";
+import { iso } from "@iso";
+import { FollowUnfollowButton } from "./FollowUnfollowButton";
 
-export function ProfileDetails({ data }: Query__Viewer__param) {
+// Define the mutation fields
+export const followUser = iso(`
+  field Mutation.FollowUser($input: FollowUserInput!) {
+    followUser(input: $input) {
+      clientMutationId
+    }
+  }
+`)(() => {});
+
+export const unfollowUser = iso(`
+  field Mutation.UnfollowUser($input: UnfollowUserInput!) {
+    unfollowUser(input: $input) {
+      clientMutationId
+    }
+  }
+`)(() => {});
+
+// In your component where you want to use the mutations
+
+interface ProfileDetails{
+  user: Query__Viewer__param;
+  followThem: (their_id: string) => void;
+  unfollowThem: (their_id: string) => void;
+}
+
+export function ProfileDetails({ user:{data} }: ProfileDetails) {
   const user_data = data?.viewer;
   const extradetails = {
     company: user_data?.company,
@@ -18,10 +45,7 @@ export function ProfileDetails({ data }: Query__Viewer__param) {
   };
 
   const [yes, setYes] = useState<any>(user_data?.viewerIsFollowing);
-  //   const [followMutation] = useMutation<ProfileDetailsfollowMutation>(FOLLOWUSER);
-  //   const [unfollowMutation] = useMutation<ProfileDetailsunfollowMutation>(UNFOLLOWUSER);
-  // const [active, setActive] = useState<string>("");
-  // const username = user?.login as string;
+
   const admin = user_data?.isViewer;
   //console.log("og user",admin)
   const followThem = (their_id: string) => {
@@ -45,7 +69,6 @@ export function ProfileDetails({ data }: Query__Viewer__param) {
             height={200}
             width={200}
           />
-
           <div
             className="text-[15px]  flex flex-col md:flex-row  items-center md:justify-evenly
            p-3  m-2 w-full  bg-base-200 rounded-lg shadow-lg

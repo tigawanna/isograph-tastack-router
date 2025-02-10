@@ -1,6 +1,6 @@
 import type {ComponentReaderArtifact, ExtractSecondParam, ReaderAst } from '@isograph/react';
 import { Query__Viewer__param } from './param_type';
-import { Viewer as resolver } from '../../../routes/dashboard/-components/dashoboard-sidebar/viewer/Viewer';
+import { ViewerIsograph as resolver } from '../../../routes/dashboard/-components/viewer/ViewerIsographComponent';
 
 const readerAst: ReaderAst<Query__Viewer__param> = [
   {

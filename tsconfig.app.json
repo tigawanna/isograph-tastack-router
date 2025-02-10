@@ -25,7 +25,14 @@
       "@/*": ["./src/*"],
       "~/*": ["./src/*"],
       "@iso": ["./src/__isograph/iso.ts"]
-    }
+    },
+    "plugins": [
+      {
+        "name": "@0no-co/graphqlsp",
+        "schema": "./schema.graphql",
+        "tadaOutputLocation": "./src/graphql-env.d.ts"
+      }
+    ]
   },
   "include": ["src"]
 }

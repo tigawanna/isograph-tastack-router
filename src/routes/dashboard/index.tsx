@@ -3,7 +3,7 @@ import {
   useRouteContext,
 } from '@tanstack/react-router'
 
-import { ViewerComponent } from './-components/dashoboard-sidebar/viewer/ViewerRoute'
+import { ViewerComponent } from './-components/viewer/ViewerComponent'
 import { useIsographEnviroment } from '@/lib/isograph/client'
 
 
