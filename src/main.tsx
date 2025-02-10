@@ -62,12 +62,12 @@ const rootElement = document.getElementById("root")!;
 if (!rootElement.innerHTML) {
   const root = ReactDOM.createRoot(rootElement);
   root.render(
-    <React.StrictMode>
+    // <React.StrictMode>
       <Suspense fallback={<RouterPendingComponent />}>
         <QueryClientProvider client={queryClient}>
           <App />
         </QueryClientProvider>
       </Suspense>
-    </React.StrictMode>
+    // </React.StrictMode>
   );
 }

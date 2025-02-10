@@ -1,23 +1,20 @@
-import { fetchCurrentViewer } from "@/lib/viewer/use-viewer";
-import { createFileRoute, Outlet } from "@tanstack/react-router";
-import { DashboardLayout } from "./-components/dashoboard-sidebar/DashboardLayout";
+import { fetchCurrentViewer } from '@/lib/viewer/use-viewer'
+import { createFileRoute } from '@tanstack/react-router'
+import { DashboardLayout } from './-components/dashoboard-sidebar/DashboardLayout'
 
-
-
-export const Route = createFileRoute("/dashboard")({
+export const Route = createFileRoute('/dashboard')({
   component: DashboardLayout,
   async loader(ctx) {
     if (!ctx.context.PAT) {
-      return;
+      return
     }
-    const viewer = await fetchCurrentViewer(ctx.context.PAT);
+    const viewer = await fetchCurrentViewer(ctx.context.PAT)
     if (!viewer) {
-      ctx.context.PAT = undefined;
-      ctx.context.viewer = undefined;
+      ctx.context.PAT = undefined
+      ctx.context.viewer = undefined
     }
-    ctx.context.viewer = viewer;
-    return viewer;
+    ctx.context.viewer = viewer
+    return viewer
   },
   staleTime: 2_000_000,
-});
-
+})
