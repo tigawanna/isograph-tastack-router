@@ -1,4 +1,6 @@
 import type { IsographEntrypoint } from '@isograph/react';
+import { type Query__Viewer__param } from './Query/Viewer/param_type';
+import entrypoint_Query__Viewer from '../__isograph/Query/Viewer/entrypoint';
 
 // This is the type given to regular client fields.
 // This means that the type of the exported iso literal is exactly
@@ -47,6 +49,14 @@ type MatchesWhitespaceAndString<
   TString extends string,
   T
 > = Whitespace<T> extends `${TString}${string}` ? T : never;
+
+export function iso<T>(
+  param: T & MatchesWhitespaceAndString<'field Query.Viewer', T>
+): IdentityWithParamComponent<Query__Viewer__param>;
+
+export function iso<T>(
+  param: T & MatchesWhitespaceAndString<'entrypoint Query.Viewer', T>
+): typeof entrypoint_Query__Viewer;
 
 export function iso(_isographLiteralText: string):
   | IdentityWithParam<any>

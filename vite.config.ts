@@ -13,7 +13,11 @@ export default defineConfig({
       routeToken: "layout", // <-- Add this line
       autoCodeSplitting: true,
     }),
-    react(),
+    react({
+      babel:{
+        babelrc: true
+      }
+    }),
     tailwindcss(),
     tsconfigPaths(),
     analyze({
@@ -29,7 +33,7 @@ export default defineConfig({
   },
     resolve: {
     alias: {
-      '@iso': path.resolve(__dirname, './src/components/__isograph/iso.ts'),
+      '@iso': path.resolve(__dirname, './src/__isograph/iso.ts'),
     },
   },
   optimizeDeps: {

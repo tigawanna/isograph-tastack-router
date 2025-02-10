@@ -1,5 +1,5 @@
 {
-  "project_root": "./src/components",
+  "project_root": "./src",
   "schema": "./schema.graphql",
   "options": {
     "module": "esmodule",
