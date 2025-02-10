@@ -4,6 +4,10 @@ export const dashboard_routes = [
   { name: "repositories", href: "/dashboard/repositories", icon: <Store /> },
   { name: "gists", href: "/dashboard/gists", icon: <Store /> },
 ] as const;
+export const user_routes = [
+  { name: "repositories", href: "/$user/repositories", icon: <Store /> },
+  { name: "gists", href: "/$ user/gists", icon: <Store /> },
+] as const;
 
 
 
