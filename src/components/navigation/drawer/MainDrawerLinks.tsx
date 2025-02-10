@@ -14,8 +14,8 @@ export function MainDrawerLinks({}: MainDrawerLinksProps) {
   const { state ,isMobile } = useSidebar();
   const { pathname } = useLocation();
   return (
-    <div className="h-full flex flex-col items-center justify-center">
-      <div className="flex h-full p-1 w-full flex-col items-center justify-center gap-5 px-3">
+    <div className="h-full flex flex-col items-center ">
+      <div className="flex h-full p-1 w-full flex-col items-center gap-5 px-3">
         {routes.map((route) => (
           <TooltipProvider key={route.name}>
             <Tooltip defaultOpen={false} delayDuration={10} disableHoverableContent>

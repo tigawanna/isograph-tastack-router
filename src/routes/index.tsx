@@ -12,9 +12,8 @@ function Index() {
   return (
     <MainDrawer links={<MainDrawerLinks />} footer={<MainDrawerFooter />}>
       <div className="min-h-screen flex flex-col items-center gap-3">
-        {/* <MainNavbar/> */}
         <div className="min-h-[70vh] w-full flex flex-col items-center gap-3 justify-center">
-          <h3 className="text-3xl font-bold">Welcome Home!</h3>
+          <h3 className="text-5xl font-bold">Welcome Home!</h3>
         </div>
       </div>
     </MainDrawer>
