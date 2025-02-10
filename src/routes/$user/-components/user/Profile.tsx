@@ -30,11 +30,11 @@ export const unfollowUser = iso(`
 
 interface ProfileDetails {
   user: Query__User__param;
-  followThem: (their_id: string) => void;
-  unfollowThem: (their_id: string) => void;
+  follow: (their_id: string) => void;
+  unfollow: (their_id: string) => void;
 }
 
-export function ProfileDetails({ user: { data } }: ProfileDetails) {
+export function ProfileDetails({ user: { data },follow,unfollow }: ProfileDetails) {
   const user_data = data?.user;
   const extradetails = {
     company: user_data?.company,
@@ -49,10 +49,12 @@ export function ProfileDetails({ user: { data } }: ProfileDetails) {
   //console.log("og user",admin)
   const followThem = (their_id: string) => {
     setYes(true);
+    follow(their_id);
     // followMutation({ variables: { input: { userId: their_id } } });
   };
   const unfollowThem = (their_id: string) => {
     setYes(false);
+    unfollow(their_id);
     // unfollowMutation({ variables: { input: { userId: their_id } } });
   };
   return (
@@ -65,8 +67,8 @@ export function ProfileDetails({ user: { data } }: ProfileDetails) {
            h-[100%] w-[100%] md:w-[30%] lg:w-[20%] object-cover aspect-square rounded-[5%]  p-1"
             src={user_data?.avatarUrl as string}
             alt=""
-            height={200}
-            width={200}
+            height={500}
+            width={500}
           />
           <div
             className="text-[15px]  flex flex-col md:flex-row  items-center md:justify-evenly
@@ -83,7 +85,7 @@ export function ProfileDetails({ user: { data } }: ProfileDetails) {
               )}
             </div>
 
-            <div className="w-full flex flex-wrap md:justify-center items-center gap-3 md:gap-2">
+            <div className="w-full flex flex-wrap md:justify-center items-center gap-5 md:gap-2">
               <ProfileInfoItemWrapper valkey="email" value={extradetails?.email} />
               <ProfileInfoItemWrapper valkey={"company"} value={extradetails?.company} />
               <ProfileInfoItemWrapper valkey="location" value={extradetails?.location} />
@@ -94,15 +96,15 @@ export function ProfileDetails({ user: { data } }: ProfileDetails) {
                     {yes ? (
                       <Button
                         onClick={() => unfollowThem(user_data?.id as string)}
-                        className="
-                rounded-md   hover:bg-error">
+                        // variant="ghost"
+                        className="btn btn-ghost btn-wide rounded-md   hover:bg-error">
                         {"Unfollow"}
                       </Button>
                     ) : (
                       <Button
                         onClick={() => followThem(user_data?.id as string)}
-                        className="
-                   rounded-md hover:bg-success">
+                        // variant="ghost"
+                        className="btn btn-ghost btn-wide rounded-md hover:bg-success">
                         {user_data?.isFollowingViewer ? "Follow back" : "Follow"}
                       </Button>
                     )}

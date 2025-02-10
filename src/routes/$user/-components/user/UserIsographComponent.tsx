@@ -33,8 +33,8 @@ export const UserIsograph = iso(`
     <div>
       <ProfileDetails
         user={props}
-        followThem={(id) => followMutation({ input: { userId: id, clientMutationId: "1" } })}
-        unfollowThem={(id) => unfollowMutation({ input: { userId: id, clientMutationId: "1" } })}
+        follow={(id) => followMutation({ input: { userId: id, clientMutationId: "1" } })}
+        unfollow={(id) => unfollowMutation({ input: { userId: id, clientMutationId: "1" } })}
       />
     </div>
   );
