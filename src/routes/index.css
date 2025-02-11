@@ -102,3 +102,16 @@
   }
 
 }
+
+.stat{
+  @apply bg-base-200/40 ;
+}
+.stat-title{
+  @apply text-xl;
+}
+.stat-value{
+  @apply text-6xl text-center;
+}
+.stat-desc{
+  @apply text-lg text-center;
+}

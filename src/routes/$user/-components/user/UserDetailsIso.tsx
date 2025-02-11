@@ -1,7 +1,7 @@
 import { iso } from "@/__isograph/iso";
 import { UserDetailsComponent } from "./UserDetailsComponent";
 
-export const IsoUserDetails = iso(`
+export const UserDetailsIso = iso(`
   field User.UserDetails @component {
     id
     name
@@ -18,7 +18,7 @@ export const IsoUserDetails = iso(`
     location
     url
   }
-`)(function IsoUserDetails(props){
+`)(function UserDetailsIso(props){
     
 return (
  <div className='w-full h-full flex flex-col items-center justify-center'>

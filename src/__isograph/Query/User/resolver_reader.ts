@@ -1,7 +1,8 @@
 import type {ComponentReaderArtifact, ExtractSecondParam, ReaderAst } from '@isograph/react';
 import { Query__User__param } from './param_type';
-import { IsoUser as resolver } from '../../../routes/$user/-components/user/IsoUser';
+import { UserIso as resolver } from '../../../routes/$user/-components/user/UserIso';
 import User__UserDetails__resolver_reader from '../../User/UserDetails/resolver_reader';
+import User__UserStats__resolver_reader from '../../User/UserStats/resolver_reader';
 
 const readerAst: ReaderAst<Query__User__param> = [
   {
@@ -21,6 +22,13 @@ const readerAst: ReaderAst<Query__User__param> = [
         alias: "UserDetails",
         arguments: null,
         readerArtifact: User__UserDetails__resolver_reader,
+        usedRefetchQueries: [],
+      },
+      {
+        kind: "Resolver",
+        alias: "UserStats",
+        arguments: null,
+        readerArtifact: User__UserStats__resolver_reader,
         usedRefetchQueries: [],
       },
     ],

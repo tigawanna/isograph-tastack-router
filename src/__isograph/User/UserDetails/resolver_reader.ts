@@ -1,6 +1,6 @@
 import type {ComponentReaderArtifact, ExtractSecondParam, ReaderAst } from '@isograph/react';
 import { User__UserDetails__param } from './param_type';
-import { IsoUserDetails as resolver } from '../../../routes/$user/-components/user/IsoUserDetails';
+import { UserDetailsIso as resolver } from '../../../routes/$user/-components/user/UserDetailsIso';
 
 const readerAst: ReaderAst<User__UserDetails__param> = [
   {

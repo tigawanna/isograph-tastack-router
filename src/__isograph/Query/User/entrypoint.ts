@@ -17,6 +17,10 @@ const queryText = 'query User ($login: String!) {\
     location,\
     login,\
     name,\
+    repositories____first___l_1: repositories(first: 1) {\
+      totalCount,\
+      totalDiskUsage,\
+    },\
     twitterUsername,\
     url,\
     viewerIsFollowing,\
@@ -91,6 +95,29 @@ const normalizationAst: NormalizationAst = {
           kind: "Scalar",
           fieldName: "name",
           arguments: null,
+        },
+        {
+          kind: "Linked",
+          fieldName: "repositories",
+          arguments: [
+            [
+              "first",
+              { kind: "Literal", value: 1 },
+            ],
+          ],
+          concreteType: "RepositoryConnection",
+          selections: [
+            {
+              kind: "Scalar",
+              fieldName: "totalCount",
+              arguments: null,
+            },
+            {
+              kind: "Scalar",
+              fieldName: "totalDiskUsage",
+              arguments: null,
+            },
+          ],
         },
         {
           kind: "Scalar",
