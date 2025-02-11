@@ -73,7 +73,7 @@ export function ProfileDetails({ user: { data },follow,unfollow }: ProfileDetail
           <div
             className="text-[15px]  flex flex-col md:flex-row  items-center md:justify-evenly
            p-3  m-2 w-full  bg-base-200 rounded-lg shadow-lg
-           font-sans  h-full">
+           font-sans  h-full gap-2">
             <div className="text-[15px] w-full ">
               <div className=" text-[15px] md:text-xl font-bold  ">{user_data?.name}</div>
               <div className="text-[15px] md:text-lg ">@{user_data?.login}</div>
@@ -85,7 +85,7 @@ export function ProfileDetails({ user: { data },follow,unfollow }: ProfileDetail
               )}
             </div>
 
-            <div className="w-full flex flex-wrap md:justify-center items-center gap-5 md:gap-2">
+            <div className="w-full flex flex-wrap md:justify-center items-center gap-5 md:gap-5 ">
               <ProfileInfoItemWrapper valkey="email" value={extradetails?.email} />
               <ProfileInfoItemWrapper valkey={"company"} value={extradetails?.company} />
               <ProfileInfoItemWrapper valkey="location" value={extradetails?.location} />
@@ -97,14 +97,14 @@ export function ProfileDetails({ user: { data },follow,unfollow }: ProfileDetail
                       <Button
                         onClick={() => unfollowThem(user_data?.id as string)}
                         // variant="ghost"
-                        className="btn btn-ghost btn-wide rounded-md   hover:bg-error">
+                        className="btn btn-primary btn-wide rounded-md   ">
                         {"Unfollow"}
                       </Button>
                     ) : (
                       <Button
                         onClick={() => followThem(user_data?.id as string)}
                         // variant="ghost"
-                        className="btn btn-ghost btn-wide rounded-md hover:bg-success">
+                        className="btn btn-secondary btn-wide rounded-md ">
                         {user_data?.isFollowingViewer ? "Follow back" : "Follow"}
                       </Button>
                     )}

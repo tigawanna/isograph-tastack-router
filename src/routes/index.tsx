@@ -29,6 +29,7 @@ function Index() {
               <div className="flex w-full p-2">{viewer?.name}</div>
             </Link>
           )}
+          <p className="text-2xl">Add user events somewhere here</p>
         </div>
       </div>
     </MainDrawer>
