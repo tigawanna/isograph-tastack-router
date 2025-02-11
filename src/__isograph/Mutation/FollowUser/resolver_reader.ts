@@ -1,7 +1,7 @@
 import type { EagerReaderArtifact, ReaderAst } from '@isograph/react';
 import { Mutation__FollowUser__param } from './param_type';
 import { Mutation__FollowUser__output_type } from './output_type';
-import { followUser as resolver } from '../../../routes/$user/-components/user/Profile';
+import { followUser as resolver } from '../../../routes/$user/-components/user/FollowUnfollowUser';
 
 const readerAst: ReaderAst<Mutation__FollowUser__param> = [
   {
@@ -21,6 +21,33 @@ const readerAst: ReaderAst<Mutation__FollowUser__param> = [
         fieldName: "clientMutationId",
         alias: null,
         arguments: null,
+      },
+      {
+        kind: "Linked",
+        fieldName: "user",
+        alias: null,
+        arguments: null,
+        condition: null,
+        selections: [
+          {
+            kind: "Scalar",
+            fieldName: "id",
+            alias: null,
+            arguments: null,
+          },
+          {
+            kind: "Scalar",
+            fieldName: "viewerIsFollowing",
+            alias: null,
+            arguments: null,
+          },
+          {
+            kind: "Scalar",
+            fieldName: "isFollowingViewer",
+            alias: null,
+            arguments: null,
+          },
+        ],
       },
     ],
   },

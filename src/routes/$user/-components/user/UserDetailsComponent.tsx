@@ -4,38 +4,27 @@ import { IoLocationOutline } from "react-icons/io5";
 import { AiOutlineMail } from "react-icons/ai";
 import { TbPoint, TbBrandTwitter } from "react-icons/tb";
 import { MdCorporateFare } from "react-icons/md";
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import { getRelativeTimeString } from "@/utils/date";
 import { iso } from "@iso";
 import { Query__User__param } from "@/__isograph/Query/User/param_type";
+import { FollowUnfollowUser } from "./FollowUnfollowUser";
+import { User__UserDetails__param } from "@/__isograph/User/UserDetails/param_type";
+import { useImperativeReference } from "@isograph/react";
+import { Loader } from "lucide-react";
 
-// Define the mutation fields
-export const followUser = iso(`
-  field Mutation.FollowUser($input: FollowUserInput!) {
-    followUser(input: $input) {
-      clientMutationId
-    }
-  }
-`)(() => {});
-
-export const unfollowUser = iso(`
-  field Mutation.UnfollowUser($input: UnfollowUserInput!) {
-    unfollowUser(input: $input) {
-      clientMutationId
-    }
-  }
-`)(() => {});
-
-// In your component where you want to use the mutations
-
-interface ProfileDetails {
-  user: Query__User__param;
-  follow: (their_id: string) => void;
-  unfollow: (their_id: string) => void;
+interface UserDetailsComponent {
+  user: User__UserDetails__param;
 }
 
-export function ProfileDetails({ user: { data },follow,unfollow }: ProfileDetails) {
-  const user_data = data?.user;
+export function UserDetailsComponent({ user }: UserDetailsComponent) {
+  const { fragmentReference: followMutationRef, loadFragmentReference: followMutation } =
+    useImperativeReference(iso(`entrypoint Mutation.FollowUser`));
+
+  const { fragmentReference: unfollowMutationRef, loadFragmentReference: unfollowMutation } =
+    useImperativeReference(iso(`entrypoint Mutation.UnfollowUser`));
+
+  const user_data = user.data;
   const extradetails = {
     company: user_data?.company,
     email: user_data?.email,
@@ -43,20 +32,6 @@ export function ProfileDetails({ user: { data },follow,unfollow }: ProfileDetail
     twitter: user_data?.twitterUsername,
   };
 
-  const [yes, setYes] = useState<any>(user_data?.viewerIsFollowing);
-
-  const admin = user_data?.isViewer;
-  //console.log("og user",admin)
-  const followThem = (their_id: string) => {
-    setYes(true);
-    follow(their_id);
-    // followMutation({ variables: { input: { userId: their_id } } });
-  };
-  const unfollowThem = (their_id: string) => {
-    setYes(false);
-    unfollow(their_id);
-    // unfollowMutation({ variables: { input: { userId: their_id } } });
-  };
   return (
     <div className="w-full flex">
       <Helmet title={user_data?.login} description={user_data?.bio ?? "Github user profile"} />
@@ -90,27 +65,10 @@ export function ProfileDetails({ user: { data },follow,unfollow }: ProfileDetail
               <ProfileInfoItemWrapper valkey={"company"} value={extradetails?.company} />
               <ProfileInfoItemWrapper valkey="location" value={extradetails?.location} />
               <ProfileInfoItemWrapper valkey={"twitter"} value={extradetails?.twitter} />
-              <div className="flex">
-                {!admin ? (
-                  <div>
-                    {yes ? (
-                      <Button
-                        onClick={() => unfollowThem(user_data?.id as string)}
-                        // variant="ghost"
-                        className="btn btn-primary btn-wide rounded-md   ">
-                        {"Unfollow"}
-                      </Button>
-                    ) : (
-                      <Button
-                        onClick={() => followThem(user_data?.id as string)}
-                        // variant="ghost"
-                        className="btn btn-secondary btn-wide rounded-md ">
-                        {user_data?.isFollowingViewer ? "Follow back" : "Follow"}
-                      </Button>
-                    )}
-                  </div>
-                ) : null}
-              </div>
+              {/*  user follow button goes here  */}
+              <Suspense fallback={<button disabled  className="btn btn-wide "><Loader className="animate-spin"/></button>}>
+              <FollowUnfollowUser user={user} followMutation={followMutation}  unfollowMutation={unfollowMutation}/>
+              </Suspense>
             </div>
           </div>
         </div>
@@ -148,10 +106,10 @@ export const ProfileInfoItemWrapper: React.FC<ProfileInfoItemWrapperProps> = ({
         return TbPoint;
     }
   };
-  const ProfileDetailsIcons = WhatIcon();
+  const UserDetailsComponentIcons = WhatIcon();
   return (
     <div className="flex items-center justify-center gap-1">
-      <ProfileDetailsIcons />
+      <UserDetailsComponentIcons />
       <div className=" ">{value}</div>
     </div>
   );

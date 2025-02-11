@@ -7,6 +7,11 @@ const nestedRefetchQueries: RefetchQueryNormalizationArtifactWrapper[] = [];
 const queryText = 'mutation FollowUser ($input: FollowUserInput!) {\
   followUser____input___v_input: followUser(input: $input) {\
     clientMutationId,\
+    user {\
+      id,\
+      isFollowingViewer,\
+      viewerIsFollowing,\
+    },\
   },\
 }';
 
@@ -28,6 +33,29 @@ const normalizationAst: NormalizationAst = {
           kind: "Scalar",
           fieldName: "clientMutationId",
           arguments: null,
+        },
+        {
+          kind: "Linked",
+          fieldName: "user",
+          arguments: null,
+          concreteType: "User",
+          selections: [
+            {
+              kind: "Scalar",
+              fieldName: "id",
+              arguments: null,
+            },
+            {
+              kind: "Scalar",
+              fieldName: "isFollowingViewer",
+              arguments: null,
+            },
+            {
+              kind: "Scalar",
+              fieldName: "viewerIsFollowing",
+              arguments: null,
+            },
+          ],
         },
       ],
     },

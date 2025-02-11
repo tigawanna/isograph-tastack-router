@@ -1,7 +1,9 @@
 import type { IsographEntrypoint } from '@isograph/react';
 import { type Mutation__FollowUser__param } from './Mutation/FollowUser/param_type';
 import { type Mutation__UnfollowUser__param } from './Mutation/UnfollowUser/param_type';
+import { type Query__OldUser__param } from './Query/OldUser/param_type';
 import { type Query__User__param } from './Query/User/param_type';
+import { type User__UserDetails__param } from './User/UserDetails/param_type';
 import entrypoint_Mutation__FollowUser from '../__isograph/Mutation/FollowUser/entrypoint';
 import entrypoint_Mutation__UnfollowUser from '../__isograph/Mutation/UnfollowUser/entrypoint';
 import entrypoint_Query__User from '../__isograph/Query/User/entrypoint';
@@ -63,8 +65,16 @@ export function iso<T>(
 ): IdentityWithParam<Mutation__UnfollowUser__param>;
 
 export function iso<T>(
+  param: T & MatchesWhitespaceAndString<'field Query.OldUser', T>
+): IdentityWithParamComponent<Query__OldUser__param>;
+
+export function iso<T>(
   param: T & MatchesWhitespaceAndString<'field Query.User', T>
 ): IdentityWithParamComponent<Query__User__param>;
+
+export function iso<T>(
+  param: T & MatchesWhitespaceAndString<'field User.UserDetails', T>
+): IdentityWithParamComponent<User__UserDetails__param>;
 
 export function iso<T>(
   param: T & MatchesWhitespaceAndString<'entrypoint Mutation.FollowUser', T>
