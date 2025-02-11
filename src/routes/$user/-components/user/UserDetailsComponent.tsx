@@ -1,13 +1,11 @@
-import { Button } from "@/components/shadcn/ui/button";
 import { Helmet } from "@/components/wrappers/custom-helmet";
 import { IoLocationOutline } from "react-icons/io5";
 import { AiOutlineMail } from "react-icons/ai";
 import { TbPoint, TbBrandTwitter } from "react-icons/tb";
 import { MdCorporateFare } from "react-icons/md";
-import { Suspense, useState } from "react";
+import { Suspense } from "react";
 import { getRelativeTimeString } from "@/utils/date";
 import { iso } from "@iso";
-import { Query__User__param } from "@/__isograph/Query/User/param_type";
 import { FollowUnfollowUser } from "./FollowUnfollowUser";
 import { User__UserDetails__param } from "@/__isograph/User/UserDetails/param_type";
 import { useImperativeReference } from "@isograph/react";
