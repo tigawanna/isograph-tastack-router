@@ -10,20 +10,67 @@ const queryText = 'query User ($login: String!) {\
     avatarUrl,\
     bio,\
     company,\
+    contributionsCollection {\
+      totalCommitContributions,\
+      totalIssueContributions,\
+      totalPullRequestContributions,\
+      totalPullRequestReviewContributions,\
+      totalRepositoriesWithContributedCommits,\
+      totalRepositoriesWithContributedIssues,\
+      totalRepositoriesWithContributedPullRequestReviews,\
+      totalRepositoriesWithContributedPullRequests,\
+    },\
     createdAt,\
     email,\
+    followers____first___l_1: followers(first: 1) {\
+      totalCount,\
+    },\
+    following____first___l_1: following(first: 1) {\
+      totalCount,\
+    },\
+    gists____first___l_1: gists(first: 1) {\
+      totalCount,\
+    },\
     isFollowingViewer,\
     isViewer,\
+    issues____first___l_1: issues(first: 1) {\
+      totalCount,\
+    },\
     location,\
     login,\
     name,\
+    organizations____first___l_1: organizations(first: 1) {\
+      totalCount,\
+    },\
+    packages____first___l_1: packages(first: 1) {\
+      totalCount,\
+    },\
+    pullRequests____first___l_1: pullRequests(first: 1) {\
+      totalCount,\
+    },\
     repositories____first___l_1: repositories(first: 1) {\
       totalCount,\
       totalDiskUsage,\
     },\
+    repositoryDiscussions____first___l_1: repositoryDiscussions(first: 1) {\
+      totalCount,\
+    },\
+    sponsoring____first___l_1: sponsoring(first: 1) {\
+      totalCount,\
+    },\
+    sponsors____first___l_1: sponsors(first: 1) {\
+      totalCount,\
+    },\
+    starredRepositories____first___l_1: starredRepositories(first: 1) {\
+      isOverLimit,\
+      totalCount,\
+    },\
     twitterUsername,\
     url,\
     viewerIsFollowing,\
+    watching____first___l_1: watching(first: 1) {\
+      totalCount,\
+    },\
   },\
 }';
 
@@ -62,6 +109,54 @@ const normalizationAst: NormalizationAst = {
           arguments: null,
         },
         {
+          kind: "Linked",
+          fieldName: "contributionsCollection",
+          arguments: null,
+          concreteType: "ContributionsCollection",
+          selections: [
+            {
+              kind: "Scalar",
+              fieldName: "totalCommitContributions",
+              arguments: null,
+            },
+            {
+              kind: "Scalar",
+              fieldName: "totalIssueContributions",
+              arguments: null,
+            },
+            {
+              kind: "Scalar",
+              fieldName: "totalPullRequestContributions",
+              arguments: null,
+            },
+            {
+              kind: "Scalar",
+              fieldName: "totalPullRequestReviewContributions",
+              arguments: null,
+            },
+            {
+              kind: "Scalar",
+              fieldName: "totalRepositoriesWithContributedCommits",
+              arguments: null,
+            },
+            {
+              kind: "Scalar",
+              fieldName: "totalRepositoriesWithContributedIssues",
+              arguments: null,
+            },
+            {
+              kind: "Scalar",
+              fieldName: "totalRepositoriesWithContributedPullRequestReviews",
+              arguments: null,
+            },
+            {
+              kind: "Scalar",
+              fieldName: "totalRepositoriesWithContributedPullRequests",
+              arguments: null,
+            },
+          ],
+        },
+        {
           kind: "Scalar",
           fieldName: "createdAt",
           arguments: null,
@@ -72,6 +167,60 @@ const normalizationAst: NormalizationAst = {
           arguments: null,
         },
         {
+          kind: "Linked",
+          fieldName: "followers",
+          arguments: [
+            [
+              "first",
+              { kind: "Literal", value: 1 },
+            ],
+          ],
+          concreteType: "FollowerConnection",
+          selections: [
+            {
+              kind: "Scalar",
+              fieldName: "totalCount",
+              arguments: null,
+            },
+          ],
+        },
+        {
+          kind: "Linked",
+          fieldName: "following",
+          arguments: [
+            [
+              "first",
+              { kind: "Literal", value: 1 },
+            ],
+          ],
+          concreteType: "FollowingConnection",
+          selections: [
+            {
+              kind: "Scalar",
+              fieldName: "totalCount",
+              arguments: null,
+            },
+          ],
+        },
+        {
+          kind: "Linked",
+          fieldName: "gists",
+          arguments: [
+            [
+              "first",
+              { kind: "Literal", value: 1 },
+            ],
+          ],
+          concreteType: "GistConnection",
+          selections: [
+            {
+              kind: "Scalar",
+              fieldName: "totalCount",
+              arguments: null,
+            },
+          ],
+        },
+        {
           kind: "Scalar",
           fieldName: "isFollowingViewer",
           arguments: null,
@@ -80,6 +229,24 @@ const normalizationAst: NormalizationAst = {
           kind: "Scalar",
           fieldName: "isViewer",
           arguments: null,
+        },
+        {
+          kind: "Linked",
+          fieldName: "issues",
+          arguments: [
+            [
+              "first",
+              { kind: "Literal", value: 1 },
+            ],
+          ],
+          concreteType: "IssueConnection",
+          selections: [
+            {
+              kind: "Scalar",
+              fieldName: "totalCount",
+              arguments: null,
+            },
+          ],
         },
         {
           kind: "Scalar",
@@ -95,6 +262,60 @@ const normalizationAst: NormalizationAst = {
           kind: "Scalar",
           fieldName: "name",
           arguments: null,
+        },
+        {
+          kind: "Linked",
+          fieldName: "organizations",
+          arguments: [
+            [
+              "first",
+              { kind: "Literal", value: 1 },
+            ],
+          ],
+          concreteType: "OrganizationConnection",
+          selections: [
+            {
+              kind: "Scalar",
+              fieldName: "totalCount",
+              arguments: null,
+            },
+          ],
+        },
+        {
+          kind: "Linked",
+          fieldName: "packages",
+          arguments: [
+            [
+              "first",
+              { kind: "Literal", value: 1 },
+            ],
+          ],
+          concreteType: "PackageConnection",
+          selections: [
+            {
+              kind: "Scalar",
+              fieldName: "totalCount",
+              arguments: null,
+            },
+          ],
+        },
+        {
+          kind: "Linked",
+          fieldName: "pullRequests",
+          arguments: [
+            [
+              "first",
+              { kind: "Literal", value: 1 },
+            ],
+          ],
+          concreteType: "PullRequestConnection",
+          selections: [
+            {
+              kind: "Scalar",
+              fieldName: "totalCount",
+              arguments: null,
+            },
+          ],
         },
         {
           kind: "Linked",
@@ -120,6 +341,83 @@ const normalizationAst: NormalizationAst = {
           ],
         },
         {
+          kind: "Linked",
+          fieldName: "repositoryDiscussions",
+          arguments: [
+            [
+              "first",
+              { kind: "Literal", value: 1 },
+            ],
+          ],
+          concreteType: "DiscussionConnection",
+          selections: [
+            {
+              kind: "Scalar",
+              fieldName: "totalCount",
+              arguments: null,
+            },
+          ],
+        },
+        {
+          kind: "Linked",
+          fieldName: "sponsoring",
+          arguments: [
+            [
+              "first",
+              { kind: "Literal", value: 1 },
+            ],
+          ],
+          concreteType: "SponsorConnection",
+          selections: [
+            {
+              kind: "Scalar",
+              fieldName: "totalCount",
+              arguments: null,
+            },
+          ],
+        },
+        {
+          kind: "Linked",
+          fieldName: "sponsors",
+          arguments: [
+            [
+              "first",
+              { kind: "Literal", value: 1 },
+            ],
+          ],
+          concreteType: "SponsorConnection",
+          selections: [
+            {
+              kind: "Scalar",
+              fieldName: "totalCount",
+              arguments: null,
+            },
+          ],
+        },
+        {
+          kind: "Linked",
+          fieldName: "starredRepositories",
+          arguments: [
+            [
+              "first",
+              { kind: "Literal", value: 1 },
+            ],
+          ],
+          concreteType: "StarredRepositoryConnection",
+          selections: [
+            {
+              kind: "Scalar",
+              fieldName: "isOverLimit",
+              arguments: null,
+            },
+            {
+              kind: "Scalar",
+              fieldName: "totalCount",
+              arguments: null,
+            },
+          ],
+        },
+        {
           kind: "Scalar",
           fieldName: "twitterUsername",
           arguments: null,
@@ -133,6 +431,24 @@ const normalizationAst: NormalizationAst = {
           kind: "Scalar",
           fieldName: "viewerIsFollowing",
           arguments: null,
+        },
+        {
+          kind: "Linked",
+          fieldName: "watching",
+          arguments: [
+            [
+              "first",
+              { kind: "Literal", value: 1 },
+            ],
+          ],
+          concreteType: "RepositoryConnection",
+          selections: [
+            {
+              kind: "Scalar",
+              fieldName: "totalCount",
+              arguments: null,
+            },
+          ],
         },
       ],
     },

@@ -102,9 +102,11 @@
   }
 
 }
-
+.stats{
+  @apply w-full h-full flex flex-wrap items-center justify-center;
+}
 .stat{
-  @apply bg-base-200/40 ;
+  @apply  w-fit flex-grow bg-base-200/40 ;
 }
 .stat-title{
   @apply text-xl;
