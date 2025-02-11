@@ -1,0 +1,14 @@
+    field Repository.UserRepository @component {
+          id
+          name
+    
+          refs(
+            refPrefix: "refs/heads/"
+            orderBy: { direction: DESC, field: TAG_COMMIT_DATE }
+            first: 2
+          ) {
+            edges {
+             totalCount  
+            }
+          }
+    }
